@@ -6,10 +6,13 @@ import { usePathname } from "next/navigation";
 import { useSidebar } from "../context/SidebarContext";
 import {
   Building2,
+  ChartColumnIncreasing,
   ChevronDown,
-  Cog,
+  BriefcaseMedical,
   Grid,
   MoreHorizontal,
+  PhoneCall,
+  Settings,
   UserCircle,
 } from "lucide-react";
 
@@ -29,7 +32,10 @@ const navItems: NavItem[] = [
   {
     icon: <UserCircle />,
     name: "Users",
-    path: "/users",
+    subItems: [
+      { name: "Doctors", path: "/users" },
+      { name: "Patients", path: "/patients" },
+    ],
   },
   {
     icon: <Building2 />,
@@ -37,17 +43,32 @@ const navItems: NavItem[] = [
     path: "/facilities",
   },
   {
-    name: "Configure",
-    icon: <Cog />,
+    name: "EMR Content",
+    icon: <BriefcaseMedical />,
     subItems: [
       { name: "Medicine", path: "/medicine" },
       { name: "Lab Tests", path: "/labs" },
       { name: "Pricing", path: "/pricing" },
     ],
   },
+  {
+    name: "Teleconsult Content",
+    icon: <PhoneCall />,
+    subItems: [{ name: "Page Contents", path: "/teleconsult/page" }],
+  },
+  {
+    icon: <ChartColumnIncreasing />,
+    name: "Reports",
+    path: "/reports",
+  },
+  {
+    icon: <Settings />,
+    name: "Settings",
+    path: "/settings",
+  },
 ];
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
 
